@@ -48,3 +48,14 @@ services:
     envVars:
       - key: VITE_PUBLIC_API_URL
         value: "https://kare-public-api.onrender.com"
+
+  - type: web
+    name: kare-admin-web
+    runtime: docker
+    region: virginia
+    plan: free
+    dockerfilePath: Dockerfile.frontend-admin
+    dockerContext: .
+    envVars:
+      - key: VITE_ADMIN_API_URL
+        value: "https://kare-admin-api.onrender.com"
