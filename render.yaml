@@ -11,7 +11,7 @@ services:
       - key: SERVICE
         value: admin
       - key: DATABASE_URL
-        sync: false
+        value: "postgresql://neondb_owner:npg_Q3SFc7RuWMCw@ep-bitter-violet-ap8nn4p3-pooler.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
       - key: JWT_SECRET
         generateValue: true
       - key: SMS_PROVIDER
@@ -29,7 +29,7 @@ services:
       - key: SERVICE
         value: public
       - key: DATABASE_URL
-        sync: false
+        value: "postgresql://neondb_owner:npg_Q3SFc7RuWMCw@ep-bitter-violet-ap8nn4p3-pooler.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
       - key: JWT_SECRET
         fromService:
           type: web
