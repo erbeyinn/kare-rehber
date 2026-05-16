@@ -27,7 +27,7 @@ RUN rm -f /etc/nginx/conf.d/default.conf
 
 COPY --from=build /app/dist /usr/share/nginx/html
 
-RUN printf '%s\n' \
+RUN mkdir -p /etc/nginx/templates && printf '%s\n' \
     'server {' \
     '  listen       ${PORT};' \
     '  server_name  _;' \
