@@ -1,4 +1,4 @@
-const baseURL = import.meta.env.VITE_ADMIN_API_URL ?? 'http://localhost:8081'
+const baseURL = import.meta.env.VITE_ADMIN_API_URL ?? 'https://kare-admin-api.onrender.com'
 
 const TOKEN_KEY = 'kare.admin.token'
 
