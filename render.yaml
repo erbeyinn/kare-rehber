@@ -4,7 +4,7 @@ services:
     runtime: docker
     region: virginia
     plan: free
-    dockerfilePath: ./Dockerfile.backend
+    dockerfilePath: Dockerfile.backend
     dockerContext: .
     healthCheckPath: /healthz
     envVars:
@@ -22,7 +22,7 @@ services:
     runtime: docker
     region: virginia
     plan: free
-    dockerfilePath: ./Dockerfile.backend
+    dockerfilePath: Dockerfile.backend
     dockerContext: .
     healthCheckPath: /healthz
     envVars:
@@ -43,7 +43,7 @@ services:
     runtime: docker
     region: virginia
     plan: free
-    dockerfilePath: ./Dockerfile.frontend-public
+    dockerfilePath: Dockerfile.frontend-public
     dockerContext: .
     envVars:
       - key: VITE_PUBLIC_API_URL
