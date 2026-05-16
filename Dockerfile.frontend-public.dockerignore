@@ -1,0 +1,10 @@
+# Only the frontend-public tree is needed for this image.
+**
+!frontend-public/**
+frontend-public/node_modules
+frontend-public/build
+frontend-public/.react-router
+frontend-public/.env
+frontend-public/.env.*
+.git
+.idea

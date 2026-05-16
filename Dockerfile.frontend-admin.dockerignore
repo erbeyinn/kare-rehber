@@ -1,0 +1,9 @@
+# Only the frontend-admin tree is needed for this image.
+**
+!frontend-admin/**
+frontend-admin/node_modules
+frontend-admin/dist
+frontend-admin/.env
+frontend-admin/.env.*
+.git
+.idea

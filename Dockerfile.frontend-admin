@@ -1,4 +1,7 @@
 # syntax=docker/dockerfile:1.7
+#
+# Build context: repository root.
+# Usage: docker build -f Dockerfile.frontend-admin -t kare-frontend-admin .
 
 # ---- Build stage ----
 FROM node:22-alpine AS build
@@ -10,10 +13,10 @@ WORKDIR /app
 ARG VITE_ADMIN_API_URL
 ENV VITE_ADMIN_API_URL=${VITE_ADMIN_API_URL}
 
-COPY package.json package-lock.json ./
+COPY frontend-admin/package.json frontend-admin/package-lock.json ./
 RUN npm ci
 
-COPY . .
+COPY frontend-admin/ ./
 RUN npm run build
 
 # ---- Runtime stage: serve the static build ----

@@ -1,4 +1,7 @@
 # syntax=docker/dockerfile:1.7
+#
+# Build context: repository root.
+# Usage: docker build -f Dockerfile.backend -t kare-backend .
 
 # ---- Build stage ----
 FROM golang:1.25-alpine AS build
@@ -6,12 +9,12 @@ FROM golang:1.25-alpine AS build
 WORKDIR /src
 
 # Cache module downloads.
-COPY go.mod go.sum ./
+COPY backend/go.mod backend/go.sum ./
 RUN --mount=type=cache,target=/go/pkg/mod \
     go mod download
 
 # Copy source and build both API binaries.
-COPY . .
+COPY backend/ ./
 
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
@@ -30,7 +33,7 @@ WORKDIR /app
 
 COPY --from=build /out/admin-api /app/admin-api
 COPY --from=build /out/public-api /app/public-api
-COPY migrations /app/migrations
+COPY backend/migrations /app/migrations
 
 # Render injects PORT at runtime; map it onto the service-specific env var
 # the binary expects. Pick which API to start via SERVICE (admin|public).

@@ -1,0 +1,10 @@
+# Only the backend tree is needed for this image.
+**
+!backend/**
+backend/.env
+backend/.env.*
+backend/mock-seed
+backend/Makefile
+backend/**/*.md
+.git
+.idea
