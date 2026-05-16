@@ -47,4 +47,4 @@ services:
     dockerContext: .
     envVars:
       - key: VITE_PUBLIC_API_URL
-        sync: false
+        value: "https://kare-public-api.onrender.com"
