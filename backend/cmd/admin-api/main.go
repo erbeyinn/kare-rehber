@@ -22,6 +22,20 @@ import (
 func main() {
 	cfg := config.Load()
 
+	dbPrefix := ""
+	if n := len(cfg.DatabaseURL); n > 0 {
+		if n > 15 {
+			dbPrefix = cfg.DatabaseURL[:15]
+		} else {
+			dbPrefix = cfg.DatabaseURL
+		}
+	}
+	slog.Info("startup config",
+		"database_url_len", len(cfg.DatabaseURL),
+		"database_url_prefix", dbPrefix,
+		"admin_port", cfg.AdminAPIPort,
+	)
+
 	ctx := context.Background()
 	if err := db.RunMigrations(ctx, cfg.DatabaseURL); err != nil {
 		slog.Error("migrations failed", "err", err)
