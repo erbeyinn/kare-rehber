@@ -23,6 +23,12 @@ func main() {
 	cfg := config.Load()
 
 	ctx := context.Background()
+	if err := db.RunMigrations(ctx, cfg.DatabaseURL); err != nil {
+		slog.Error("migrations failed", "err", err)
+		os.Exit(1)
+	}
+	slog.Info("migrations applied")
+
 	pool, err := db.Connect(ctx, cfg.DatabaseURL)
 	if err != nil {
 		slog.Error("db connect failed", "err", err)
