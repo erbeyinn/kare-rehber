@@ -1,0 +1,45 @@
+# syntax=docker/dockerfile:1.7
+
+# ---- Build stage ----
+FROM node:22-alpine AS build
+
+WORKDIR /app
+
+# Vite bakes VITE_* values into the bundle at build time. Pass them in via
+# Render's "Build Args" so the same image works across environments.
+ARG VITE_ADMIN_API_URL
+ENV VITE_ADMIN_API_URL=${VITE_ADMIN_API_URL}
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+# ---- Runtime stage: serve the static build ----
+FROM nginx:1.27-alpine
+
+# SPA-friendly config + honor Render's $PORT (default 8080 for local runs).
+RUN rm -f /etc/nginx/conf.d/default.conf
+
+COPY --from=build /app/dist /usr/share/nginx/html
+
+RUN printf '%s\n' \
+    'server {' \
+    '  listen       ${PORT};' \
+    '  server_name  _;' \
+    '  root         /usr/share/nginx/html;' \
+    '  index        index.html;' \
+    '  location / {' \
+    '    try_files $uri $uri/ /index.html;' \
+    '  }' \
+    '  location ~* \.(?:js|css|woff2?|ttf|otf|svg|png|jpg|jpeg|gif|webp|ico)$ {' \
+    '    expires 7d;' \
+    '    add_header Cache-Control "public, max-age=604800, immutable";' \
+    '  }' \
+    '}' > /etc/nginx/templates/default.conf.template
+
+ENV PORT=8080
+EXPOSE 8080
+
+CMD ["nginx", "-g", "daemon off;"]
