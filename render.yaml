@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: kare-admin-api
+    runtime: docker
+    region: virginia
+    plan: free
+    dockerfilePath: ./Dockerfile.backend
+    dockerContext: .
+    healthCheckPath: /healthz
+    envVars:
+      - key: SERVICE
+        value: admin
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SMS_PROVIDER
+        value: mock
+
+  - type: web
+    name: kare-public-api
+    runtime: docker
+    region: virginia
+    plan: free
+    dockerfilePath: ./Dockerfile.backend
+    dockerContext: .
+    healthCheckPath: /healthz
+    envVars:
+      - key: SERVICE
+        value: public
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        fromService:
+          type: web
+          name: kare-admin-api
+          envVarKey: JWT_SECRET
+      - key: SMS_PROVIDER
+        value: mock
+
+  - type: web
+    name: kare-public-web
+    runtime: docker
+    region: virginia
+    plan: free
+    dockerfilePath: ./Dockerfile.frontend-public
+    dockerContext: .
+    envVars:
+      - key: VITE_PUBLIC_API_URL
+        sync: false
