@@ -20,7 +20,8 @@ export function DataTable<T>({ columns, data, empty = 'Kayıt yok.' }: DataTable
 
   return (
     <div className="overflow-hidden rounded-2xl border border-stone-200/60 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,.03)] backdrop-blur">
-      <table className="w-full text-sm">
+      <div className="overflow-x-auto">
+      <table className="w-full min-w-[640px] text-sm">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr
@@ -66,6 +67,7 @@ export function DataTable<T>({ columns, data, empty = 'Kayıt yok.' }: DataTable
           )}
         </tbody>
       </table>
+      </div>
     </div>
   )
 }

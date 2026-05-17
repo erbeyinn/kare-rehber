@@ -90,7 +90,7 @@ export default function OverdueCoachesPage() {
         description="Belirlenen aralıkta öğrencisiyle görüşme yapmamış koçlar. SMS ile manuel hatırlatma gönderebilirsiniz."
       />
 
-      <div className="flex flex-wrap items-end gap-4 rounded-2xl border border-stone-200/60 bg-white/60 px-5 py-4 backdrop-blur">
+      <div className="flex flex-col gap-3 rounded-2xl border border-stone-200/60 bg-white/60 px-4 py-4 backdrop-blur sm:flex-row sm:flex-wrap sm:items-end sm:gap-4 sm:px-5">
         <div className="flex flex-col">
           <label className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-stone-400">
             Gün Eşiği
@@ -111,17 +111,18 @@ export default function OverdueCoachesPage() {
           type="button"
           onClick={() => refetch()}
           disabled={isFetching}
-          className="rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-600 hover:bg-stone-100 disabled:opacity-50"
+          className="self-start rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-600 hover:bg-stone-100 disabled:opacity-50 sm:self-auto"
         >
           {isFetching ? 'Yenileniyor…' : 'Yenile'}
         </button>
-        <div className="ml-auto text-sm text-stone-500">
+        <div className="text-sm text-stone-500 sm:ml-auto">
           {isLoading ? '' : `${totalCount} koç görüşmesi gecikmiş`}
         </div>
       </div>
 
       <div className="mt-6 overflow-hidden rounded-2xl border border-stone-200/60 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,.03)] backdrop-blur">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="w-full min-w-[640px] text-sm">
           <thead>
             <tr className="border-b border-stone-200/70 bg-stone-50/70 text-left">
               <th className="w-10 px-5 py-3">
@@ -197,13 +198,14 @@ export default function OverdueCoachesPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
 
-      <div className="sticky bottom-6 mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-stone-200/70 bg-white/80 px-6 py-4 shadow-[0_8px_30px_rgba(0,0,0,.06)] backdrop-blur">
+      <div className="sticky bottom-4 mt-8 flex flex-col items-stretch gap-3 rounded-2xl border border-stone-200/70 bg-white/90 px-4 py-3 shadow-[0_8px_30px_rgba(0,0,0,.06)] backdrop-blur sm:bottom-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4 sm:px-6 sm:py-4">
         <div className="text-sm text-stone-600">
           <span className="font-semibold text-stone-900">{selectedCount}</span> koç seçildi
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2 sm:flex-row">
           <button
             type="button"
             onClick={() => openModal('selected')}

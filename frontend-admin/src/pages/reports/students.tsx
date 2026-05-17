@@ -32,12 +32,12 @@ export default function StudentReportsPage() {
         description="Öğrenci başına görüşme sayısı, son görüşme tarihi ve atanmış koç."
       />
 
-      <div className="mb-6 flex flex-wrap items-end gap-4 rounded-2xl border border-stone-200/60 bg-white/60 px-5 py-4 backdrop-blur">
+      <div className="mb-6 flex flex-col gap-3 rounded-2xl border border-stone-200/60 bg-white/60 px-4 py-4 backdrop-blur sm:flex-row sm:flex-wrap sm:items-end sm:gap-4 sm:px-5">
         <FilterField label="İl">
           <select
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            className="w-44 rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+            className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 sm:w-44"
           >
             <option value="">Tüm iller</option>
             {citiesQ.data?.items.map((c) => (
@@ -49,7 +49,7 @@ export default function StudentReportsPage() {
           <select
             value={coachId}
             onChange={(e) => setCoachId(e.target.value === '' ? '' : Number(e.target.value))}
-            className="w-60 rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+            className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 sm:w-60"
           >
             <option value="">Tüm koçlar</option>
             {coachesQ.data?.items.map((c) => (
@@ -63,17 +63,18 @@ export default function StudentReportsPage() {
             setCity('')
             setCoachId('')
           }}
-          className="rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-600 hover:bg-stone-100"
+          className="self-start rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-600 hover:bg-stone-100 sm:self-auto"
         >
           Sıfırla
         </button>
-        <div className="ml-auto text-sm text-stone-500">
+        <div className="text-sm text-stone-500 sm:ml-auto">
           {statsQ.isLoading ? '' : `${rows.length} öğrenci`}
         </div>
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-stone-200/60 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,.03)] backdrop-blur">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="w-full min-w-[640px] text-sm">
           <thead>
             <tr className="border-b border-stone-200/70 bg-stone-50/70 text-left">
               <Th>Ad Soyad</Th>
@@ -125,6 +126,7 @@ export default function StudentReportsPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </AdminShell>
   )

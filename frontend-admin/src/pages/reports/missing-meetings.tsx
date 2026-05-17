@@ -30,7 +30,7 @@ export default function MissingMeetingsPage() {
         description="Belirlenen eşikten daha uzun süredir koçuyla görüşmemiş aktif öğrenciler."
       />
 
-      <div className="mb-6 flex flex-wrap items-end gap-4 rounded-2xl border border-stone-200/60 bg-white/60 px-5 py-4 backdrop-blur">
+      <div className="mb-6 flex flex-col gap-3 rounded-2xl border border-stone-200/60 bg-white/60 px-4 py-4 backdrop-blur sm:flex-row sm:flex-wrap sm:items-end sm:gap-4 sm:px-5">
         <div className="flex flex-col">
           <label className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-stone-400">Gün Eşiği</label>
           <input
@@ -47,17 +47,18 @@ export default function MissingMeetingsPage() {
           type="button"
           onClick={() => q.refetch()}
           disabled={q.isFetching}
-          className="rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-600 hover:bg-stone-100 disabled:opacity-50"
+          className="self-start rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-600 hover:bg-stone-100 disabled:opacity-50 sm:self-auto"
         >
           {q.isFetching ? 'Yenileniyor…' : 'Yenile'}
         </button>
-        <div className="ml-auto text-sm text-stone-500">
+        <div className="text-sm text-stone-500 sm:ml-auto">
           {q.isLoading ? '' : `${rows.length} öğrenci`}
         </div>
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-stone-200/60 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,.03)] backdrop-blur">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="w-full min-w-[640px] text-sm">
           <thead>
             <tr className="border-b border-stone-200/70 bg-stone-50/70 text-left">
               <Th>Öğrenci</Th>
@@ -95,6 +96,7 @@ export default function MissingMeetingsPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </AdminShell>
   )

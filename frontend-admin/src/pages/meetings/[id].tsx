@@ -149,7 +149,7 @@ export default function MeetingDetailPage() {
 
           {errors.root && <div className="text-sm text-red-600">{errors.root.message}</div>}
 
-          <div className="flex justify-end gap-3">
+          <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">
             <button
               type="button"
               onClick={() =>

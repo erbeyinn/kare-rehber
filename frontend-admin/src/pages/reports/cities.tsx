@@ -35,7 +35,8 @@ export default function CityReportsPage() {
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-stone-200/60 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,.03)] backdrop-blur">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="w-full min-w-[520px] text-sm">
           <thead>
             <tr className="border-b border-stone-200/70 bg-stone-50/70 text-left">
               <Th>İl</Th>
@@ -58,7 +59,7 @@ export default function CityReportsPage() {
                     <td className="px-5 py-3 align-middle text-stone-700">{c.student_count}</td>
                     <td className="px-5 py-3 align-middle text-stone-700">{c.coach_count}</td>
                     <td className="px-5 py-3 align-middle">
-                      <div className="flex h-2 w-48 overflow-hidden rounded-full bg-stone-100">
+                      <div className="flex h-2 w-32 overflow-hidden rounded-full bg-stone-100 sm:w-48">
                         <div
                           className="h-full rounded-full bg-stone-900 transition-all"
                           style={{ width: `${pct}%` }}
@@ -71,6 +72,7 @@ export default function CityReportsPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </AdminShell>
   )

@@ -56,7 +56,7 @@ export default function BulkSMSPage() {
         description="Rol ve il filtreleriyle bir kitle seçin, mesajınızı yazın ve hepsine gönderin."
       />
 
-      <div className="flex flex-wrap items-end gap-4 rounded-2xl border border-stone-200/60 bg-white/60 px-5 py-4 backdrop-blur">
+      <div className="flex flex-col gap-4 rounded-2xl border border-stone-200/60 bg-white/60 px-4 py-4 backdrop-blur sm:flex-row sm:flex-wrap sm:items-end sm:px-5">
         <div className="flex flex-col">
           <label className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-stone-400">
             Rol
@@ -68,7 +68,7 @@ export default function BulkSMSPage() {
               setRole(next)
               if (next !== 'student' && next !== 'parent') setCity('')
             }}
-            className="min-w-[12rem] rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+            className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 sm:w-auto sm:min-w-[12rem]"
           >
             {ROLE_OPTIONS.map((o) => (
               <option key={o.value} value={o.value}>
@@ -86,7 +86,7 @@ export default function BulkSMSPage() {
             value={city}
             disabled={!cityEnabled}
             onChange={(e) => setCity(e.target.value)}
-            className="min-w-[12rem] rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 disabled:bg-stone-100 disabled:text-stone-400"
+            className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 disabled:bg-stone-100 disabled:text-stone-400 sm:w-auto sm:min-w-[12rem]"
           >
             <option value="">Tüm iller</option>
             {(citiesQ.data?.items ?? []).map((c) => (
@@ -97,7 +97,7 @@ export default function BulkSMSPage() {
           </select>
         </div>
 
-        <div className="ml-auto text-sm text-stone-600">
+        <div className="text-sm text-stone-600 sm:ml-auto">
           {recipientsQ.isLoading ? (
             'Sayılıyor…'
           ) : (

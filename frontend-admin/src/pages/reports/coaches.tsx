@@ -33,7 +33,8 @@ export default function CoachReportsPage() {
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-stone-200/60 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,.03)] backdrop-blur">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="w-full min-w-[720px] text-sm">
           <thead>
             <tr className="border-b border-stone-200/70 bg-stone-50/70 text-left">
               <Th>Ad Soyad</Th>
@@ -86,6 +87,7 @@ export default function CoachReportsPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </AdminShell>
   )

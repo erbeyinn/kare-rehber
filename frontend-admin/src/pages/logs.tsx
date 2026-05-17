@@ -60,12 +60,12 @@ export default function LogsPage() {
         description="Sistemde yapılan değişikliklerin geçmişi — kim, ne zaman, neyi değiştirdi."
       />
 
-      <div className="mb-6 flex flex-wrap items-end gap-4 rounded-2xl border border-stone-200/60 bg-white/60 px-5 py-4 backdrop-blur">
+      <div className="mb-6 grid grid-cols-2 gap-3 rounded-2xl border border-stone-200/60 bg-white/60 px-4 py-4 backdrop-blur sm:flex sm:flex-wrap sm:items-end sm:gap-4 sm:px-5">
         <FilterField label="Entity">
           <select
             value={entityType}
             onChange={(e) => setEntityType(e.target.value)}
-            className="w-44 rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+            className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 sm:w-44"
           >
             <option value="">Tümü</option>
             {Object.entries(ENTITY_LABELS).map(([v, l]) => (
@@ -79,7 +79,7 @@ export default function LogsPage() {
             min={1}
             value={entityId}
             onChange={(e) => setEntityId(e.target.value)}
-            className="w-28 rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+            className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 sm:w-28"
           />
         </FilterField>
         <FilterField label="Actor ID">
@@ -88,7 +88,7 @@ export default function LogsPage() {
             min={1}
             value={actorId}
             onChange={(e) => setActorId(e.target.value)}
-            className="w-28 rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+            className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 sm:w-28"
           />
         </FilterField>
         <FilterField label="Başlangıç">
@@ -96,7 +96,7 @@ export default function LogsPage() {
             type="date"
             value={from}
             onChange={(e) => setFrom(e.target.value)}
-            className="rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+            className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 sm:w-auto"
           />
         </FilterField>
         <FilterField label="Bitiş">
@@ -104,23 +104,24 @@ export default function LogsPage() {
             type="date"
             value={to}
             onChange={(e) => setTo(e.target.value)}
-            className="rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+            className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 sm:w-auto"
           />
         </FilterField>
         <button
           type="button"
           onClick={reset}
-          className="rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-600 hover:bg-stone-100"
+          className="col-span-2 rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-600 hover:bg-stone-100 sm:col-span-1"
         >
           Sıfırla
         </button>
-        <div className="ml-auto text-sm text-stone-500">
+        <div className="col-span-2 text-sm text-stone-500 sm:col-span-1 sm:ml-auto">
           {q.isLoading ? '' : `${rows.length} kayıt`}
         </div>
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-stone-200/60 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,.03)] backdrop-blur">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="w-full min-w-[720px] text-sm">
           <thead>
             <tr className="border-b border-stone-200/70 bg-stone-50/70 text-left">
               <Th>Zaman</Th>
@@ -184,6 +185,7 @@ export default function LogsPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
 
       <Modal

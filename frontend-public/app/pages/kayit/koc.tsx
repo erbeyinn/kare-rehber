@@ -132,7 +132,7 @@ function Shell({ eyebrow, title, lede, children }: ShellProps) {
   return (
     <main className="relative min-h-screen overflow-hidden bg-(--color-surface-sunken)">
       <AnimatedMesh tone="calm" className="opacity-50" />
-      <div className="relative mx-auto max-w-3xl px-6 py-14 sm:py-20">
+      <div className="relative mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14 lg:py-20">
         <div className="mb-8 flex justify-between gap-4">
           <BrandMark />
           <a
@@ -183,7 +183,7 @@ function Section({
         delay: index * 0.06,
         ease: [0.19, 1, 0.22, 1],
       }}
-      className="relative overflow-hidden rounded-(--radius-3xl) border border-border bg-card/90 p-8 shadow-(--shadow-soft) backdrop-blur-xl"
+      className="relative overflow-hidden rounded-(--radius-3xl) border border-border bg-card/90 p-5 shadow-(--shadow-soft) backdrop-blur-xl sm:p-8"
     >
       <div className="mb-6 flex items-center gap-3">
         <span

@@ -238,7 +238,7 @@ function Toolbar({
   onSearch: (v: string) => void
 }) {
   return (
-    <div className="flex flex-wrap items-end gap-4 rounded-2xl border border-stone-200/60 bg-white/60 px-5 py-4 backdrop-blur">
+    <div className="flex flex-col gap-4 rounded-2xl border border-stone-200/60 bg-white/60 px-4 py-4 backdrop-blur sm:flex-row sm:flex-wrap sm:items-end sm:px-5">
       <div className="flex flex-col">
         <label className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-stone-400">
           İl
@@ -246,7 +246,7 @@ function Toolbar({
         <select
           value={city}
           onChange={(e) => onCity(e.target.value)}
-          className="min-w-[10rem] rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+          className="w-full min-w-0 rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 sm:w-auto sm:min-w-[10rem]"
         >
           <option value="">Tüm iller</option>
           {cities.map((c) => (
@@ -257,7 +257,7 @@ function Toolbar({
         </select>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col sm:flex-1 sm:min-w-[16rem]">
         <label className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-stone-400">
           Arama
         </label>
@@ -265,11 +265,11 @@ function Toolbar({
           value={search}
           onChange={(e) => onSearch(e.target.value)}
           placeholder="Öğrenci veya hedef…"
-          className="min-w-[16rem] rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+          className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
         />
       </div>
 
-      <label className="ml-auto inline-flex cursor-pointer items-center gap-2 text-sm text-stone-600">
+      <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-stone-600 sm:ml-auto">
         <input
           type="checkbox"
           checked={onlyUnmatched}
@@ -487,7 +487,7 @@ function ActionFooter({
   onClick: () => void
 }) {
   return (
-    <div className="sticky bottom-6 mt-8 flex items-center justify-between rounded-2xl border border-stone-200/70 bg-white/80 px-6 py-4 shadow-[0_8px_30px_rgba(0,0,0,.06)] backdrop-blur">
+    <div className="sticky bottom-4 mt-8 flex flex-col gap-3 rounded-2xl border border-stone-200/70 bg-white/90 px-4 py-3 shadow-[0_8px_30px_rgba(0,0,0,.06)] backdrop-blur sm:bottom-6 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-4">
       <div className="text-sm text-stone-600">
         <span className="font-semibold text-stone-900">{selectedCount}</span> öğrenci seçildi
         {target ? (
@@ -506,7 +506,7 @@ function ActionFooter({
         type="button"
         disabled={!canSubmit}
         onClick={onClick}
-        className="rounded-full bg-stone-900 px-6 py-2 text-sm font-medium text-stone-50 hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-40"
+        className="rounded-full bg-stone-900 px-6 py-2 text-sm font-medium text-stone-50 hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
       >
         Seçilenleri Eşleştir
       </button>

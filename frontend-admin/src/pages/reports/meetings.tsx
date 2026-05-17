@@ -40,13 +40,13 @@ export default function MeetingReportsPage() {
         description="Seçilen aralıkta günlük görüşme adetleri ve statü dağılımı."
       />
 
-      <div className="mb-6 flex flex-wrap items-end gap-4 rounded-2xl border border-stone-200/60 bg-white/60 px-5 py-4 backdrop-blur">
+      <div className="mb-6 flex flex-col gap-3 rounded-2xl border border-stone-200/60 bg-white/60 px-4 py-4 backdrop-blur sm:flex-row sm:flex-wrap sm:items-end sm:gap-4 sm:px-5">
         <FilterField label="Başlangıç">
           <input
             type="date"
             value={from}
             onChange={(e) => setFrom(e.target.value)}
-            className="rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+            className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 sm:w-auto"
           />
         </FilterField>
         <FilterField label="Bitiş">
@@ -54,13 +54,15 @@ export default function MeetingReportsPage() {
             type="date"
             value={to}
             onChange={(e) => setTo(e.target.value)}
-            className="rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400"
+            className="w-full rounded-full border border-stone-200 bg-white px-4 py-1.5 text-sm text-stone-700 outline-none focus:border-stone-400 sm:w-auto"
           />
         </FilterField>
-        <Quick label="Son 7 gün" days={6} setFrom={setFrom} setTo={setTo} />
-        <Quick label="Son 30 gün" days={29} setFrom={setFrom} setTo={setTo} />
-        <Quick label="Son 90 gün" days={89} setFrom={setFrom} setTo={setTo} />
-        <div className="ml-auto text-sm text-stone-500">
+        <div className="-mx-1 flex flex-wrap gap-2 px-1">
+          <Quick label="Son 7 gün" days={6} setFrom={setFrom} setTo={setTo} />
+          <Quick label="Son 30 gün" days={29} setFrom={setFrom} setTo={setTo} />
+          <Quick label="Son 90 gün" days={89} setFrom={setFrom} setTo={setTo} />
+        </div>
+        <div className="text-sm text-stone-500 sm:ml-auto">
           {q.isLoading ? '' : `Toplam ${data?.total ?? 0} görüşme`}
         </div>
       </div>
@@ -79,7 +81,8 @@ export default function MeetingReportsPage() {
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-stone-200/60 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,.03)] backdrop-blur">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="w-full min-w-[480px] text-sm">
           <thead>
             <tr className="border-b border-stone-200/70 bg-stone-50/70 text-left">
               <Th>Gün</Th>
@@ -112,7 +115,7 @@ export default function MeetingReportsPage() {
                     <td className="px-5 py-3 align-middle font-medium text-stone-900">{p.day}</td>
                     <td className="px-5 py-3 align-middle text-stone-700">{p.count}</td>
                     <td className="px-5 py-3 align-middle">
-                      <div className="flex h-2 w-48 overflow-hidden rounded-full bg-stone-100">
+                      <div className="flex h-2 w-32 overflow-hidden rounded-full bg-stone-100 sm:w-48">
                         <div
                           className="h-full rounded-full bg-stone-900 transition-all"
                           style={{ width: `${pct}%` }}
@@ -125,6 +128,7 @@ export default function MeetingReportsPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </AdminShell>
   )
